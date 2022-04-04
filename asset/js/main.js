@@ -4,8 +4,15 @@ var app = new Vue(
     el:'#root',
 
     data: {
+
+        myAccount : {
+            name : 'Simone',
+            avatar: '_io',
+        },
+
         contacts: [
             {
+                id: 1,
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
@@ -28,7 +35,8 @@ var app = new Vue(
                 ],
             },
             {
-                name: 'Fabio',
+                id: 2,
+                name: 'Sofia',
                 avatar: '_2',
                 visible: true,
                 messages: [
@@ -50,6 +58,7 @@ var app = new Vue(
                 ],
             },
             {
+                id: 3,
                 name: 'Samuele',
                 avatar: '_3',
                 visible: true,
@@ -72,6 +81,7 @@ var app = new Vue(
                 ],
             },
             {
+                id: 4,
                 name: 'Alessandro B.',
                 avatar: '_4',
                 visible: true,
@@ -89,6 +99,7 @@ var app = new Vue(
                 ],
             },
             {
+                id: 5,
                 name: 'Alessandro L.',
                 avatar: '_5',
                 visible: true,
@@ -106,6 +117,7 @@ var app = new Vue(
                 ],
             },
             {
+                id: 6,
                 name: 'Claudia',
                 avatar: '_6',
                 visible: true,
@@ -128,6 +140,7 @@ var app = new Vue(
                 ],
             },
             {
+                id: 7,
                 name: 'Federico',
                 avatar: '_7',
                 visible: true,
@@ -145,6 +158,7 @@ var app = new Vue(
                 ],
             },
             {
+                id: 8,
                 name: 'Davide',
                 avatar: '_8',
                 visible: true,
@@ -165,7 +179,8 @@ var app = new Vue(
                         status: 'received'
                     }
                 ],
-            }
+            },
+            
         ]
         
     },

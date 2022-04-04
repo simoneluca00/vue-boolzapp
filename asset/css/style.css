@@ -2,5 +2,158 @@
    padding: 0;
    margin: 0;
    box-sizing: border-box;
+   font-family: sans-serif;
 }
 
+/* ANCHOR general tags */
+i {
+    color: #b0b1b3;
+    font-size: 1.3em;
+    margin: 0 8px;
+}
+
+/* ANCHOR utilities */
+.text-small {
+    font-size: 0.8em;
+}
+
+.text-underlined {
+    text-decoration: underline;
+}
+
+.text-gray {
+    color: dimgrey;
+}
+
+/* sfondo con due colorazioni */
+#container {
+    height: 100vh;
+    background-image: 
+        linear-gradient(to bottom,
+        #009688 0px,
+        #009688 15vh,
+        #dddbd1 15vh,
+        #d2dbdc 100%);
+    
+    padding: 20px 0;
+}
+
+/* contenitore generale delle due colonne */
+#main {
+    width: 85%;
+    margin: 0 auto;
+    background-color: #fff;
+    display: flex;
+}
+
+/* contenitore di sinistra dove sono contenute le chat */
+#colSx {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* spazio dedicato al profilo dell'utente che ha effettuato l'accesso */
+#myAccount {
+    background-color: #e9eaed;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    border-right: 1px solid #d5d5e2;
+}
+
+.myInfo,
+.iconsProfile,
+#notifiche,
+#findChat > div {
+    display: flex;
+    align-items: center;
+}
+
+.profilePhoto {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* spazio dedicato agli avvisi riguardanti le notifiche */
+#notifiche {
+    background-color: #99dafd;
+    padding: 10px;
+}
+
+.ringIcon {
+  background-color: #fff;
+  padding: 15px 5px;
+  border-radius: 50%;
+  margin-right: 20px;  
+}
+
+.ringIcon > i {
+    color: #99dafd;
+}
+
+/* spazio dedicato al filtraggio delle chat attraverso l'input */
+#findChat {
+    padding: 7px;
+    background-color: #f1f2f8;
+}
+
+#findChat > div {
+    border: 1px solid #e9eaed;
+    border-radius: 5px;
+}
+
+.searchInput {
+    width: 87%;
+}
+
+.searchInput > input {
+    width: 100%;
+    padding: 7px 5px;
+    border: none;
+    border: 1px solid #fff;
+    border-radius: 0 5px 5px 0;
+    outline: none;
+}
+
+.searchIcon {
+    width: 13%;
+    text-align: center;
+    background-color: #fff;
+    padding: 6.5px 0;
+    border-right: 1px solid #e9eaed;
+    border-radius: 5px 0 0 5px;
+}
+
+.fa-magnifying-glass {
+    font-size: initial;
+}
+
+/* spazio dedicato alle singole chat */
+#chats h4 {
+    padding: 15px;
+}
+
+.singleContact {
+    display: flex;
+    padding: 7px;
+    border-bottom: 1px solid #d5d5e2;
+}
+
+.contactInfo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+
+.contactInfo p {
+    margin-bottom: 5px;
+}
+
+/* contenitore di destra dove vengono mostrate le singole conversazioni */
+#colDx {
+    width: 65%;
+}
