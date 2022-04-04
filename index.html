@@ -63,7 +63,7 @@
                     <div id="chats">
                         <h4 v-if="contacts.length === 0">Cerca un contatto e inizia una nuova conversazione!</h4>
                         <ul v-else>
-                            <li v-for="(contact, index) in contacts" :key="contact.id" class="singleContact">
+                            <li v-for="(contact, index) in contacts" :key="contact.id" class="singleContact" :class="{'currentChat' : contact.currentChat == true}" @click="selectChat(contact)">
                                 <img :src="'./asset/img/avatar' + contact.avatar + '.jpg'" alt="foto profilo contatto" class="profilePhoto">
                                    
                                 <div class="contactInfo">
@@ -74,7 +74,7 @@
                                         </p>
                                     </div>
     
-                                    <div class="messageTime">
+                                    <div>
                                         <span class="text-small text-gray">12:00</span>
                                     </div>
                                 </div>
@@ -88,7 +88,51 @@
 
                 <!-- lato destro dove vengono mostrate le singole conversazioni -->
                 <div id="colDx">
-                    
+
+                    <!-- info contatto della chat aperta -->
+                    <div id="contactAccount">
+                        <img :src="'./asset/img/avatar' + contacts[currentIndex].avatar + '.jpg'" alt="foto profilo contatto" class="profilePhoto">
+                        <div class="contactInfo">
+                            <div>
+                                <span>{{contacts[currentIndex].name}}</span>
+                                <p class="text-small text-gray">
+                                    Ultimo accesso oggi alle 12:00
+                                </p>
+                            </div>
+
+                            <div class="iconsProfile">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-paperclip"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- corpo della conversazione (messaggi) -->
+                    <div id="chatMessages">
+                        <ul>
+                            <li class="singleMessage" :class="[(text.status === 'sent') ? 'sent' : 'received']" v-for="(text, index) in contacts[currentIndex].messages">
+                                <span class="textMessage">{{text.message}}</span>
+                                <span class="timeMessage text-gray">{{text.date}}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- sezione per scrivere un nuovo messaggio -->
+                    <div id="writeNewMessage">
+
+                        <div class="emojiIcon">
+                            <i class="fa-regular fa-smile"></i>
+                        </div>
+
+                        <div class="newText">
+                            <input type="text" placeholder="Scrivi un messaggio">
+                        </div>
+
+                        <div class="microIcon">
+                            <i class="fa-solid fa-microphone"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

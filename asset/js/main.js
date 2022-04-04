@@ -5,6 +5,8 @@ var app = new Vue(
 
     data: {
 
+        currentIndex: '0',
+
         myAccount : {
             name : 'Simone',
             avatar: '_io',
@@ -12,10 +14,11 @@ var app = new Vue(
 
         contacts: [
             {
-                id: 1,
+                id: 0,
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
+                currentChat : true,
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -35,10 +38,11 @@ var app = new Vue(
                 ],
             },
             {
-                id: 2,
+                id: 1,
                 name: 'Sofia',
                 avatar: '_2',
                 visible: true,
+                currentChat : false,
                 messages: [
                     {
                         date: '20/03/2020 16:30:00',
@@ -58,10 +62,11 @@ var app = new Vue(
                 ],
             },
             {
-                id: 3,
+                id: 2,
                 name: 'Samuele',
                 avatar: '_3',
                 visible: true,
+                currentChat : false,
                 messages: [
                     {
                         date: '28/03/2020 10:10:40',
@@ -81,10 +86,11 @@ var app = new Vue(
                 ],
             },
             {
-                id: 4,
+                id: 3,
                 name: 'Alessandro B.',
                 avatar: '_4',
                 visible: true,
+                currentChat : false,
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -99,10 +105,11 @@ var app = new Vue(
                 ],
             },
             {
-                id: 5,
+                id: 4,
                 name: 'Alessandro L.',
                 avatar: '_5',
                 visible: true,
+                currentChat : false,
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -117,10 +124,11 @@ var app = new Vue(
                 ],
             },
             {
-                id: 6,
+                id: 5,
                 name: 'Claudia',
                 avatar: '_6',
                 visible: true,
+                currentChat : false,
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -140,10 +148,11 @@ var app = new Vue(
                 ],
             },
             {
-                id: 7,
+                id: 6,
                 name: 'Federico',
                 avatar: '_7',
                 visible: true,
+                currentChat : false,
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -158,10 +167,11 @@ var app = new Vue(
                 ],
             },
             {
-                id: 8,
+                id: 7,
                 name: 'Davide',
                 avatar: '_8',
                 visible: true,
+                currentChat : false,
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -186,7 +196,14 @@ var app = new Vue(
     },
 
     methods: {
-
+        // come impostare per avere un solo elemento TRUE (quello cliccato) e tutti gli altri FALSE?
+        selectChat: function(element){
+            // toggle per la chat aperta di lato (chat attuale)
+            element.currentChat = !element.currentChat;
+            
+            // avere di lato i messaggi della chat sulla quale si clicca 
+            this.currentIndex = element.id;
+        },
     }
 }
 )

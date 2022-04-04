@@ -25,6 +25,10 @@ i {
     color: dimgrey;
 }
 
+.currentChat {
+    background-color: #d5d5e2;
+}
+
 /* sfondo con due colorazioni */
 #container {
     height: 100vh;
@@ -65,7 +69,8 @@ i {
 .myInfo,
 .iconsProfile,
 #notifiche,
-#findChat > div {
+#findChat > div,
+#contactAccount > .contactInfo {
     display: flex;
     align-items: center;
 }
@@ -127,7 +132,7 @@ i {
     border-radius: 5px 0 0 5px;
 }
 
-.fa-magnifying-glass {
+.searchIcon > .fa-magnifying-glass {
     font-size: initial;
 }
 
@@ -140,6 +145,11 @@ i {
     display: flex;
     padding: 7px;
     border-bottom: 1px solid #d5d5e2;
+}
+
+.singleContact:hover {
+    cursor: pointer;
+    background-color: #d5d5e2;
 }
 
 .contactInfo {
@@ -156,4 +166,87 @@ i {
 /* contenitore di destra dove vengono mostrate le singole conversazioni */
 #colDx {
     width: 65%;
+    display: flex;
+    flex-direction: column;
 }
+
+/* info contatto della chat aperta */
+#contactAccount {
+    background-color: #e9eaed;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+}
+
+/* corpo della conversazione (messaggi) */
+#chatMessages {
+    background-image: url('./../img/mine.jpg');
+    height: 100%;
+    padding: 30px 40px;
+}
+
+#chatMessages ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.singleMessage {
+    list-style-type: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textMessage {
+    margin: 0 60px 0 15px;
+    padding: 15px 0;
+}
+
+.timeMessage {
+    margin: 0 5px 3px 0;
+    align-self: flex-end;
+    font-size: 0.7em;
+}
+
+.sent {
+    background-color: #d8f8bf;
+    align-self: flex-end;
+}
+
+.received {
+    background-color: #fff;
+    align-self: flex-start;
+}
+
+/* sezione per scrivere un nuovo messaggio */
+#writeNewMessage {
+    background-color: #f2eeed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #d5d5e2;
+}
+
+#writeNewMessage i {
+    color: #6c7377;
+}
+
+.emojiIcon,
+.microIcon {
+    padding: 20px;
+}
+
+.newText,
+.newText > input {
+    width: 100%;
+}
+
+.newText > input {
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}
+
