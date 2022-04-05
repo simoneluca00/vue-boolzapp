@@ -50,6 +50,7 @@ i {
     width: 85%;
     background-color: #fff;
     display: flex;
+    height: 100%;
 }
 
 /* contenitore di sinistra dove sono contenute le chat */
@@ -87,7 +88,7 @@ i {
 /* SECTION sezione dedicata agli avvisi riguardanti le notifiche */
 #notifiche {
     background-color: #99dafd;
-    padding: 10px;
+    padding: 10.5px;
 }
 
 .ringIcon {
@@ -139,10 +140,9 @@ i {
 }
 
 /* SECTION sezione dedicata alle singole chat */
-
-/* #chats {
-    overflow-y: auto;
-} */
+#chats {
+    height: 100%;
+}
 
 #chats h4 {
     padding: 15px;
@@ -150,7 +150,7 @@ i {
 
 .singleContact {
     display: flex;
-    padding: 7px;
+    padding: 7.3px;
     border-bottom: 1px solid #d5d5e2;
 }
 
@@ -233,7 +233,7 @@ i {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid #d5d5e2;
+    /* border-bottom: 1px solid #d5d5e2; */
 }
 
 #writeNewMessage i {

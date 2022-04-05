@@ -53,7 +53,9 @@
                             </div>
 
                             <div class="searchInput">
-                                <input type="text" placeholder="Cerca o inizia una nuova chat">
+                                <input type="text" placeholder="Cerca o inizia una nuova chat"
+                                       v-model.trim="searchContact"
+                                >
                             </div>
                         </div>
                     </div>
@@ -63,9 +65,9 @@
                     <div id="chats">
                         <h4 v-if="contacts.length === 0">Cerca un contatto e inizia una nuova conversazione!</h4>
                         <ul v-else>
-                            <li v-for="(contact, index) in contacts" :key="contact.id" 
+                            <li v-for="(contact, index) in filteredList" :key="contact.id" 
                                 class="singleContact" :class="{'currentChat' : contact.currentChat == true}" 
-                                @click="selectChat(contact, index)"
+                                @click="selectChat(contact, contact.id)"
                             >
                                 <img :src="'./asset/img/avatar' + contact.avatar + '.jpg'" :alt="`foto profilo di ${contact.name}`" class="profilePhoto">
                                    
@@ -132,7 +134,7 @@
 
                         <div class="newText">
                             <input type="text" placeholder="Scrivi un messaggio"
-                                   v-model.trim="newMessageText" @keypress.enter="sendNewMessage()"
+                                   v-model.trim="newMessageText" @keypress.enter="sendNewMessage"
                             >
                         </div>
 

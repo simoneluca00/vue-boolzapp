@@ -194,22 +194,28 @@ var app = new Vue(
         ],
 
         currentIndex: 0,
+
         newMessageText : '',
+
+        searchContact: '',
+
+        contactsName: [],
         
     },
 
     created(){
+
     },
 
     methods: {
-        selectChat: function(element,contactIndex){
+        selectChat: function(element,identification){
             
             // toggle per la chat aperta di lato (chat attuale)
             // TODO come impostare per avere un solo elemento TRUE (quello cliccato) e tutti gli altri FALSE?
             element.currentChat = !element.currentChat;
             
             // avere sul lato destro i messaggi della chat sulla quale si clicca 
-            this.currentIndex = contactIndex;
+            this.currentIndex = identification - 1;
         },
 
         sendNewMessage: function(){
@@ -245,7 +251,18 @@ var app = new Vue(
             },2000);
 
         },
+
+    },
+
+    computed: {
         
+        filteredList(){
+            return this.contacts.filter(
+                contact => {
+                    return contact.name.toLowerCase().includes(this.searchContact.toLowerCase())
+                }
+            )
+        }
     }
 }
 )
