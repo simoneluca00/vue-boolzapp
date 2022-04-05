@@ -5,16 +5,16 @@ var app = new Vue(
 
     data: {
 
-        currentIndex: '0',
-
         myAccount : {
             name : 'Simone',
             avatar: '_io',
         },
 
+        
+        // N.B. contacts.id = index del singolo oggetto + 1
         contacts: [
             {
-                id: 0,
+                id: 1,
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
@@ -38,7 +38,7 @@ var app = new Vue(
                 ],
             },
             {
-                id: 1,
+                id: 2,
                 name: 'Sofia',
                 avatar: '_2',
                 visible: true,
@@ -62,7 +62,7 @@ var app = new Vue(
                 ],
             },
             {
-                id: 2,
+                id: 3,
                 name: 'Samuele',
                 avatar: '_3',
                 visible: true,
@@ -86,7 +86,7 @@ var app = new Vue(
                 ],
             },
             {
-                id: 3,
+                id: 4,
                 name: 'Alessandro B.',
                 avatar: '_4',
                 visible: true,
@@ -105,7 +105,7 @@ var app = new Vue(
                 ],
             },
             {
-                id: 4,
+                id: 5,
                 name: 'Alessandro L.',
                 avatar: '_5',
                 visible: true,
@@ -124,7 +124,7 @@ var app = new Vue(
                 ],
             },
             {
-                id: 5,
+                id: 6,
                 name: 'Claudia',
                 avatar: '_6',
                 visible: true,
@@ -148,7 +148,7 @@ var app = new Vue(
                 ],
             },
             {
-                id: 6,
+                id: 7,
                 name: 'Federico',
                 avatar: '_7',
                 visible: true,
@@ -167,7 +167,7 @@ var app = new Vue(
                 ],
             },
             {
-                id: 7,
+                id: 8,
                 name: 'Davide',
                 avatar: '_8',
                 visible: true,
@@ -191,19 +191,61 @@ var app = new Vue(
                 ],
             },
             
-        ]
+        ],
+
+        currentIndex: 0,
+        newMessageText : '',
         
     },
 
+    created(){
+    },
+
     methods: {
-        // come impostare per avere un solo elemento TRUE (quello cliccato) e tutti gli altri FALSE?
-        selectChat: function(element){
+        selectChat: function(element,contactIndex){
+            
             // toggle per la chat aperta di lato (chat attuale)
+            // TODO come impostare per avere un solo elemento TRUE (quello cliccato) e tutti gli altri FALSE?
             element.currentChat = !element.currentChat;
             
-            // avere di lato i messaggi della chat sulla quale si clicca 
-            this.currentIndex = element.id;
+            // avere sul lato destro i messaggi della chat sulla quale si clicca 
+            this.currentIndex = contactIndex;
         },
+
+        sendNewMessage: function(){
+            let currentDate = dayjs().format('DD/MM/YYYY');
+            let currentTime = dayjs().format('HH:mm:ss')
+            console.log(currentDate, currentTime);
+
+            let newObjectMessage = {
+                date: `${currentDate} ${currentTime}`,
+                message: this.newMessageText,
+                status: 'sent'
+            }
+
+            let singleArrayMessage = this.contacts[this.currentIndex].messages;
+
+            if (newObjectMessage.message !== '') {
+                singleArrayMessage.push(newObjectMessage);
+            }
+
+            this.newMessageText = '';
+            
+            setTimeout(function(){
+                let currentDate2 = dayjs().format('DD/MM/YYYY');
+                let currentTime2 = dayjs().format('HH:mm:ss')
+
+                let newObjectMessageReceived = {
+                    date: `${currentDate2} ${currentTime2}`,
+                    message: 'Povero gabbiano',
+                    status: 'received'
+                }
+    
+                singleArrayMessage.push(newObjectMessageReceived);
+            },2000);
+
+        },
+        
     }
 }
 )

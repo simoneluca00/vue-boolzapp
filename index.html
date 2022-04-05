@@ -20,10 +20,10 @@
 
                 <!-- lato sinistro dove vengono mostrate tutte le chat -->
                 <div id="colSx">
-                    <!-- spazio dedicato al profilo dell'utente che ha effettuato l'accesso -->
+                    <!-- SECTION sezione dedicata al profilo dell'utente che ha effettuato l'accesso -->
                     <div id="myAccount">
                         <div class="myInfo">
-                            <img :src="'./asset/img/avatar' + myAccount.avatar + '.jpg'" alt="foto profilo personale" class="profilePhoto">
+                            <img :src="'./asset/img/avatar' + myAccount.avatar + '.jpg'" :alt="`foto profilo di ${myAccount.name}`" class="profilePhoto">
                             <span>{{myAccount.name}}</span>
                         </div>
 
@@ -34,7 +34,7 @@
                         </div>
                     </div>
 
-                    <!-- spazio dedicato agli avvisi riguardanti le notifiche -->
+                    <!-- SECTION sezione dedicata agli avvisi riguardanti le notifiche -->
                     <div id="notifiche">
                         <div class="ringIcon">
                             <i class="fa-solid fa-bell-slash"></i>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
 
-                    <!-- spazio dedicato al filtraggio delle chat attraverso l'input -->
+                    <!-- SECTION sezione dedicata al filtraggio delle chat attraverso l'input -->
                     <div id="findChat">
                         <div>
                             <div class="searchIcon">
@@ -58,13 +58,16 @@
                         </div>
                     </div>
 
-                    <!-- spazio dedicato alle singole chat -->
+                    <!-- SECTION sezione dedicata alle singole chat -->
 
                     <div id="chats">
                         <h4 v-if="contacts.length === 0">Cerca un contatto e inizia una nuova conversazione!</h4>
                         <ul v-else>
-                            <li v-for="(contact, index) in contacts" :key="contact.id" class="singleContact" :class="{'currentChat' : contact.currentChat == true}" @click="selectChat(contact)">
-                                <img :src="'./asset/img/avatar' + contact.avatar + '.jpg'" alt="foto profilo contatto" class="profilePhoto">
+                            <li v-for="(contact, index) in contacts" :key="contact.id" 
+                                class="singleContact" :class="{'currentChat' : contact.currentChat == true}" 
+                                @click="selectChat(contact, index)"
+                            >
+                                <img :src="'./asset/img/avatar' + contact.avatar + '.jpg'" :alt="`foto profilo di ${contact.name}`" class="profilePhoto">
                                    
                                 <div class="contactInfo">
                                     <div>
@@ -89,7 +92,7 @@
                 <!-- lato destro dove vengono mostrate le singole conversazioni -->
                 <div id="colDx">
 
-                    <!-- info contatto della chat aperta -->
+                    <!-- SECTION info contatto della chat aperta -->
                     <div id="contactAccount">
                         <img :src="'./asset/img/avatar' + contacts[currentIndex].avatar + '.jpg'" alt="foto profilo contatto" class="profilePhoto">
                         <div class="contactInfo">
@@ -108,17 +111,19 @@
                         </div>
                     </div>
 
-                    <!-- corpo della conversazione (messaggi) -->
+                    <!-- SECTION corpo della conversazione (messaggi) -->
                     <div id="chatMessages">
                         <ul>
-                            <li class="singleMessage" :class="[(text.status === 'sent') ? 'sent' : 'received']" v-for="(text, index) in contacts[currentIndex].messages">
+                            <li class="singleMessage" :class="[(text.status === 'sent') ? 'sent' : 'received']" 
+                                v-for="(text, index) in contacts[currentIndex].messages"
+                            >
                                 <span class="textMessage">{{text.message}}</span>
                                 <span class="timeMessage text-gray">{{text.date}}</span>
                             </li>
                         </ul>
                     </div>
 
-                    <!-- sezione per scrivere un nuovo messaggio -->
+                    <!-- SECTION sezione per scrivere un nuovo messaggio -->
                     <div id="writeNewMessage">
 
                         <div class="emojiIcon">
@@ -126,7 +131,9 @@
                         </div>
 
                         <div class="newText">
-                            <input type="text" placeholder="Scrivi un messaggio">
+                            <input type="text" placeholder="Scrivi un messaggio"
+                                   v-model.trim="newMessageText" @keypress.enter="sendNewMessage()"
+                            >
                         </div>
 
                         <div class="microIcon">
@@ -138,7 +145,11 @@
         </div>
     </div>
 
+    <!-- VUE.JS -->
     <script src='https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js'></script>
+    <!-- DAY.JS -->
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <!-- JS PERSONALE -->
     <script src='./asset/js/main.js'></script>
 </body>
 

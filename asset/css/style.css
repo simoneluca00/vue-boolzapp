@@ -40,12 +40,14 @@ i {
         #d2dbdc 100%);
     
     padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* contenitore generale delle due colonne */
 #main {
     width: 85%;
-    margin: 0 auto;
     background-color: #fff;
     display: flex;
 }
@@ -57,7 +59,7 @@ i {
     flex-direction: column;
 }
 
-/* spazio dedicato al profilo dell'utente che ha effettuato l'accesso */
+/* SECTION sezione dedicata al profilo dell'utente che ha effettuato l'accesso */
 #myAccount {
     background-color: #e9eaed;
     padding: 5px 15px;
@@ -82,7 +84,7 @@ i {
     margin-right: 15px;
 }
 
-/* spazio dedicato agli avvisi riguardanti le notifiche */
+/* SECTION sezione dedicata agli avvisi riguardanti le notifiche */
 #notifiche {
     background-color: #99dafd;
     padding: 10px;
@@ -99,7 +101,7 @@ i {
     color: #99dafd;
 }
 
-/* spazio dedicato al filtraggio delle chat attraverso l'input */
+/* SECTION sezione dedicata al filtraggio delle chat attraverso l'input */
 #findChat {
     padding: 7px;
     background-color: #f1f2f8;
@@ -136,7 +138,12 @@ i {
     font-size: initial;
 }
 
-/* spazio dedicato alle singole chat */
+/* SECTION sezione dedicata alle singole chat */
+
+/* #chats {
+    overflow-y: auto;
+} */
+
 #chats h4 {
     padding: 15px;
 }
@@ -170,7 +177,7 @@ i {
     flex-direction: column;
 }
 
-/* info contatto della chat aperta */
+/* SECTION info contatto della chat aperta */
 #contactAccount {
     background-color: #e9eaed;
     display: flex;
@@ -178,7 +185,7 @@ i {
     padding: 5px 15px;
 }
 
-/* corpo della conversazione (messaggi) */
+/* SECTION corpo della conversazione (messaggi) */
 #chatMessages {
     background-image: url('./../img/mine.jpg');
     height: 100%;
@@ -220,7 +227,7 @@ i {
     align-self: flex-start;
 }
 
-/* sezione per scrivere un nuovo messaggio */
+/* SECTION sezione per scrivere un nuovo messaggio */
 #writeNewMessage {
     background-color: #f2eeed;
     display: flex;
