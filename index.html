@@ -44,7 +44,8 @@
                         </div>
                         <div>
                             <p>Ricevi notifiche di nuovi messaggi</p>
-                            <p class="text-small text-underlined text-gray notificheActive">Attiva le notidiche desktop</p>
+                            <p class="text-small text-underlined text-gray notificheActive">Attiva le notidiche desktop
+                            </p>
                         </div>
                     </div>
 
@@ -56,7 +57,7 @@
                             </div>
 
                             <div class="searchInput">
-                                <input type="text" placeholder="Cerca o inizia una nuova chat"
+                                <input type="text" placeholder="Cerca o inizia una nuova chat" @keyup="filterList()"
                                     v-model.trim="searchContact">
                             </div>
                         </div>
@@ -72,9 +73,9 @@
                                 univoco per ogni contatto, dato che non ho impostato la funzione per il filtraggio
                                 sulla variabile booleana "VISIBLE" 
                             -->
-                            <li v-for="(contact, index) in filteredList" :key="contact.id" class="singleContact"
-                                :class="{'currentChat' : contact.currentChat == true}"
-                                @click="toggleElement(contact), selectChat(contact.id)">
+                            <li v-for="(contact, index) in contacts" :key="contact.id" class="singleContact"
+                                :class="[(index == currentIndex) ? 'currentChat' : '']"
+                                @click="toggleElement(contact), selectChat(index)" v-if="contact.visible == true">
                                 <img :src="'./asset/img/avatar' + contact.avatar + '.jpg'"
                                     :alt="`foto profilo di ${contact.name}`" class="profilePhoto">
 
@@ -110,8 +111,10 @@
                         <div class="contactInfo">
                             <div>
                                 <span>{{contacts[currentIndex].name}}</span>
+                                <!-- per cambiare lo stato NO v-model perchè non è un input -->
                                 <p class="text-small text-gray">
-                                    Ultimo accesso oggi alle 12:00
+                                    <!-- Ultimo accesso oggi alle 12:00 -->
+                                    {{contactStatus}}
                                 </p>
                             </div>
 
@@ -133,7 +136,7 @@
                                 <i class="fa-solid"
                                     :class="{ 'fa-angle-down' : text.showDropDown, 'fa-angle-up' : !text.showDropDown }"
                                     aria-hidden="true" @click="toggleElement(text)">
-                                    
+
                                 </i>
 
                                 <div v-if="!text.showDropDown" class="optionMessage">
@@ -141,7 +144,7 @@
                                     <ul>
                                         <li @click="">
                                             Info messaggio
-                                            <i class="fa-solid fa-info"></i>                                        </li>
+                                            <i class="fa-solid fa-info"></i> </li>
                                         <li @click="deleteMessage(index)">
                                             Elimina per me
                                             <i class="fa-solid fa-trash-can"></i>
@@ -167,10 +170,7 @@
 
                         <!-- se si sta scrivendo nell'input compare l'icona dell'aeroplano e cliccandola è possibile inviare il messaggio -->
                         <div class="microIcon">
-                            <i v-if="newMessageText !== ''" 
-                               class="fa-solid fa-paper-plane"
-                               @click="sendNewMessage"
-                            ></i>
+                            <i v-if="newMessageText !== ''" class="fa-solid fa-paper-plane" @click="sendNewMessage"></i>
                             <i v-else class="fa-solid fa-microphone"></i>
                         </div>
                     </div>

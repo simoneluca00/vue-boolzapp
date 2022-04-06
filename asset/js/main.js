@@ -16,7 +16,7 @@ var app = new Vue({
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
-                currentChat: true,
+                // currentChat: true,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Hai portato a spasso il cane?',
@@ -42,7 +42,7 @@ var app = new Vue({
                 name: 'Sofia',
                 avatar: '_2',
                 visible: true,
-                currentChat: false,
+                // currentChat: false,
                 messages: [{
                         date: '20/03/2020 16:30:00',
                         message: 'Ciao come stai?',
@@ -68,7 +68,7 @@ var app = new Vue({
                 name: 'Samuele',
                 avatar: '_3',
                 visible: true,
-                currentChat: false,
+                // currentChat: false,
                 messages: [{
                         date: '28/03/2020 10:10:40',
                         message: 'La Marianna va in campagna',
@@ -94,7 +94,7 @@ var app = new Vue({
                 name: 'Alessandro B.',
                 avatar: '_4',
                 visible: true,
-                currentChat: false,
+                // currentChat: false,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Lo sai che ha aperto una nuova pizzeria?',
@@ -114,7 +114,7 @@ var app = new Vue({
                 name: 'Alessandro L.',
                 avatar: '_5',
                 visible: true,
-                currentChat: false,
+                // currentChat: false,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Ricordati di chiamare la nonna',
@@ -134,7 +134,7 @@ var app = new Vue({
                 name: 'Claudia',
                 avatar: '_6',
                 visible: true,
-                currentChat: false,
+                // currentChat: false,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Ciao Claudia, hai novità?',
@@ -160,7 +160,7 @@ var app = new Vue({
                 name: 'Federico',
                 avatar: '_7',
                 visible: true,
-                currentChat: false,
+                // currentChat: false,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Fai gli auguri a Martina che è il suo compleanno!',
@@ -180,7 +180,7 @@ var app = new Vue({
                 name: 'Davide',
                 avatar: '_8',
                 visible: true,
-                currentChat: false,
+                // currentChat: false,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Ciao, andiamo a mangiare la pizza stasera?',
@@ -211,27 +211,19 @@ var app = new Vue({
         // testo del messaggio (input text della chat aperta)
         newMessageText: '',
 
+        // stato del singolo contatto (chat aperta a destra) --> online / sta scrivendo / ultimo accesso
+        contactStatus: 'Ultimo accesso ieri alle 22:28'
     },
 
     methods: {
         // switch tra le chat nella colonna di sx (contatti)
-        selectChat: function (identification) {
+        selectChat: function (index) {
             // avere sul lato destro i messaggi della chat sulla quale si clicca 
-            this.currentIndex = identification - 1;
-
-            /*
-                ho dovuto abbinare il "currentIndex" a CONTACT.ID - 1 per ogni contatto perchè filtrando
-                i contatti gli index di ognuno cambiavano (poichè il filtraggio non è basato sulla
-                proprietà booleana "VISIBLE" mentre in questo caso l'ID di ogni contatto non varia)
-            */
+            this.currentIndex = index;
         },
 
         // funzione generale per effettuare il toggle su qualsiasi elemento
         toggleElement: function (element) {
-
-            // toggle per la chat aperta di lato (chat attuale)
-            // TODO come impostare per avere un solo elemento TRUE (quello cliccato) e tutti gli altri FALSE?
-            element.currentChat = !element.currentChat;
 
             // toggle per il dropdown di ogni singolo messaggio
             element.showDropDown = !element.showDropDown;
@@ -240,7 +232,7 @@ var app = new Vue({
         // inviare un nuovo messaggio
         sendNewMessage: function () {
             let currentDate = dayjs().format('DD/MM/YYYY');
-            let currentTime = dayjs().format('HH:mm:ss')
+            let currentTime = dayjs().format('HH:mm:ss');
 
             let singleArrayMessage = this.contacts[this.currentIndex].messages; 
 
@@ -258,11 +250,15 @@ var app = new Vue({
                 
                 // reset campo input (dopo aver inviato un messaggio) per inviare un nuovo messaggio
                 this.newMessageText = '';
-    
+
+                setTimeout(() => {
+                    this.contactStatus = 'sta scrivendo...';
+                }, 2000);
+                
                 // dopo 2 secondi che l'utente invia un messaggio si ha una risposta automatica
-                setTimeout(function () {
+                setTimeout(() => {
                     let currentDate2 = dayjs().format('DD/MM/YYYY');
-                    let currentTime2 = dayjs().format('HH:mm:ss')
+                    var currentTime2 = dayjs().format('HH:mm:ss');
  
                     // struttura dell'oggetto per un nuovo messaggio ricevuto
                     let newObjectMessageReceived = {
@@ -271,13 +267,35 @@ var app = new Vue({
                         status: 'received',
                         showDropDown: true,
                     }
-    
+                    
                     singleArrayMessage.push(newObjectMessageReceived);
-                }, 2000);
+                    
+                    this.contactStatus = 'online';
+                    console.log(this.contactStatus)
+                    
+                }, 4500);
+                
             }
+
+            setTimeout( () => {
+                var currentTime2 = dayjs().format('HH:mm')
+                this.contactStatus = `Ultimo accesso oggi alle ${currentTime2}`;
+                console.log(this.contactStatus)
+            },7000)
+            
 
         },
         
+        filterList: function(){
+            this.contacts.forEach(element => {
+                if (element.name.toLowerCase().includes(this.searchContact.toLowerCase())) {
+                    element.visible = true;
+                } else {
+                    element.visible = false;
+                }
+            });
+        },
+
         // funzione per rendere dinamico l'ultimo messaggio della chat nella colonna sinistra
         lastMessage: function(index){
             let singleArrayMessage = this.contacts[index - 1].messages;
@@ -303,14 +321,15 @@ var app = new Vue({
     computed: {
 
 
-        // viene creato un nuovo array con gli stessi elementi di contacts 
-        // (il v-for in HTML è basato su quest'ultimo, non su "contacts")
-        filteredList() {
-            return this.contacts.filter(
-                contact => {
-                    return contact.name.toLowerCase().includes(this.searchContact.toLowerCase())
-                }
-            )
-        },
+        // // VECCHIA VERSIONE: viene creato un nuovo array con gli stessi elementi di contacts 
+        // // (il v-for in HTML è basato su quest'ultimo, non su "contacts")
+        // filteredList() {
+        //     return this.contacts.filter(
+        //         contact => {
+        //             return contact.name.toLowerCase().includes(this.searchContact.toLowerCase())
+        //         }
+        //     )
+        // },
+
     }
 })

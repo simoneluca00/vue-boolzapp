@@ -323,6 +323,10 @@ i:hover {
     padding: 20px;
 }
 
+.fa-paper-plane {
+    font-size: 1em;
+}
+
 .newText,
 .newText>input {
     width: 100%;
