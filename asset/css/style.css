@@ -2,18 +2,29 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: Helvetica;
+}
+
+/* variabili root */
+
+:root {
+    --bg-gradient-start: #009688;
+    --bg-gradient-middle: #dddbd1;
+    --bg-gradient-end: #d2dbdc;
+    --bg-primary-topAccounts: #e9eaed;
+    --notifications: #99dafd;
+    --currentChat: #ececec;
+    --iconDimgrey: #696969;
+    --timeDate: #778899;
+    --bg-dropDown: #f5f5f5;
+    --bg-white: #fff;
 }
 
 /* ANCHOR general tags */
 i {
-    color: #b0b1b3;
+    color: var(--iconDimgrey);
     font-size: 1.3em;
     margin: 0 8px;
-}
-
-i:hover {
-    cursor: pointer;
 }
 
 /* ANCHOR utilities */
@@ -26,11 +37,27 @@ i:hover {
 }
 
 .text-gray {
-    color: dimgrey;
+    color: var(--timeDate);
 }
 
 .currentChat {
-    background-color: #d5d5e2;
+    background-color: var(--currentChat);
+}
+
+/* effetti hover */
+i:not(.fa-bell-slash):hover,
+.notificationTurnOn:hover,
+.singleContact:hover,
+.optionMessage li:hover {
+    cursor: pointer;
+}
+
+.singleContact:hover {
+    background-color: var(--currentChat);
+}
+
+.optionMessage li:hover {
+    opacity: 0.6;
 }
 
 /* sfondo con due colorazioni */
@@ -38,10 +65,10 @@ i:hover {
     height: 100vh;
     background-image:
         linear-gradient(to bottom,
-            #009688 0px,
-            #009688 15vh,
-            #dddbd1 15vh,
-            #d2dbdc 100%);
+            var(--bg-gradient-start) 0px,
+            var(--bg-gradient-start) 15vh,
+            var(--bg-gradient-middle) 15vh,
+            var(--bg-gradient-end) 100%);
 
     padding: 20px 0;
     display: flex;
@@ -52,7 +79,7 @@ i:hover {
 /* contenitore generale delle due colonne */
 #main {
     width: 85%;
-    background-color: #fff;
+    background-color: var(--bg-white);
     display: flex;
     height: 100%;
 }
@@ -66,16 +93,16 @@ i:hover {
 
 /* SECTION sezione dedicata al profilo dell'utente che ha effettuato l'accesso */
 #myAccount {
-    background-color: #e9eaed;
+    background-color: var(--bg-primary-topAccounts);
     padding: 5px 15px;
     display: flex;
     justify-content: space-between;
-    border-right: 1px solid #d5d5e2;
+    border-right: 1px solid var(--iconDimgrey);
 }
 
 .myInfo,
 .iconsProfile,
-#notifiche,
+#notification,
 #findChat>div,
 #contactAccount>.contactInfo {
     display: flex;
@@ -90,34 +117,32 @@ i:hover {
 }
 
 /* SECTION sezione dedicata agli avvisi riguardanti le notifiche */
-#notifiche {
-    background-color: #99dafd;
+#notification {
+    background-color: var(--notifications);
     padding: 10.5px;
 }
 
-.notificheActive:hover {
-    cursor: pointer;
-}
+
 
 .ringIcon {
-    background-color: #fff;
+    background-color: var(--bg-white);
     padding: 15px 5px;
     border-radius: 50%;
     margin-right: 20px;
 }
 
 .ringIcon>i {
-    color: #99dafd;
+    color: var(--notifications);
 }
 
 /* SECTION sezione dedicata al filtraggio delle chat attraverso l'input */
 #findChat {
     padding: 7px;
-    background-color: #f1f2f8;
+    background-color: var(--bg-primary-topAccounts);
 }
 
 #findChat>div {
-    border: 1px solid #e9eaed;
+    border: 1px solid var(--currentChat);
     border-radius: 5px;
 }
 
@@ -129,7 +154,7 @@ i:hover {
     width: 100%;
     padding: 7px 5px;
     border: none;
-    border: 1px solid #fff;
+    border: 1px solid var(--bg-white);
     border-radius: 0 5px 5px 0;
     outline: none;
 }
@@ -137,9 +162,9 @@ i:hover {
 .searchIcon {
     width: 13%;
     text-align: center;
-    background-color: #fff;
+    background-color: var(--bg-white);
     padding: 6.5px 0;
-    border-right: 1px solid #e9eaed;
+    border-right: 1px solid var(--bg-primary-topAccounts);
     border-radius: 5px 0 0 5px;
 }
 
@@ -160,12 +185,7 @@ i:hover {
 .singleContact {
     display: flex;
     padding: 10px;
-    border-bottom: 1px solid #d5d5e2;
-}
-
-.singleContact:hover {
-    cursor: pointer;
-    background-color: #d5d5e2;
+    border-bottom: 1px solid var(--currentChat);
 }
 
 .contactInfo {
@@ -175,8 +195,13 @@ i:hover {
     padding-top: 5px;
 }
 
-.contactInfo p {
-    margin-bottom: 5px;
+.lastMessageText {
+    color: var(--timeDate);
+    margin: 7px 0;
+    font-size: 0.9em;
+    height: 16.5px;
+    width: 250px;
+    overflow-y: clip;
 }
 
 .lastMessageDate {
@@ -194,7 +219,7 @@ i:hover {
 
 /* SECTION info contatto della chat aperta */
 #contactAccount {
-    background-color: #e9eaed;
+    background-color: var(--bg-primary-topAccounts);
     display: flex;
     justify-content: space-between;
     padding: 5px 15px;
@@ -214,16 +239,16 @@ i:hover {
 }
 
 .singleMessage {
-    list-style-type: none;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    font-size: 0.9em;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
     width: auto;
     min-width: 55%;
     max-width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    list-style-type: none;
+    border-radius: 5px;
+    font-size: 0.9em;
 }
 
 .textMessage {
@@ -245,7 +270,7 @@ i:hover {
 }
 
 .received {
-    background-color: #fff;
+    background-color: var(--bg-white);
     align-self: flex-start;
 }
 
@@ -256,18 +281,15 @@ i:hover {
     top: 0;
 }
 
-.fa-angle-down:hover,
-.fa-angle-up:hover {
-    cursor: pointer;
-}
+
 
 /* dropdown per i messaggi inviati */
 .optionMessage {
     position: absolute;
     top: 46px;
     right: 0;
-    background-color: whitesmoke;
-    border-top: 1px solid #d5d5e2;
+    background-color: var(--bg-dropDown);
+    border-top: 1px solid var(--currentChat);
     z-index: 9999;
 }
 
@@ -278,16 +300,13 @@ i:hover {
     align-items: center;
     justify-content: center;
     list-style-type: none;
-    border: 1px solid #d5d5e2;
-    box-shadow: 0 0 1px 1px inset rgb(218, 208, 208);
+    border: 1px solid var(--currentChat);
+    box-shadow: 0 0 1px 1px inset #dad0d0;
     border-top: 0;
     font-size: 0.9em;
 }
 
-.optionMessage li:hover {
-    cursor: pointer;
-    opacity: 0.6;
-}
+
 
 .optionMessage i {
     color: #000;
@@ -295,14 +314,13 @@ i:hover {
 
 .optionMessage .fa-info {
     padding: 2px 6px;
-    border: 1px solid #000;
+    border: 1px solid;
     border-radius: 50%;
     font-size: 0.9em;
 }
 
-.optionMessage .fa-trash-can {
+.fa-trash-can {
     margin-left: 13px;
-    font-size: 1em;
 }
 
 /* SECTION sezione per scrivere un nuovo messaggio */
@@ -311,11 +329,6 @@ i:hover {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* border-bottom: 1px solid #d5d5e2; */
-}
-
-#writeNewMessage i {
-    color: #6c7377;
 }
 
 .emojiIcon,
@@ -323,7 +336,8 @@ i:hover {
     padding: 20px;
 }
 
-.fa-paper-plane {
+.fa-paper-plane,
+.fa-trash-can {
     font-size: 1em;
 }
 

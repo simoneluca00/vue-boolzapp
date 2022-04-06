@@ -16,24 +16,23 @@ var app = new Vue({
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
-                // currentChat: true,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Hai portato a spasso il cane?',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '10/01/2020 15:50:00',
                         message: 'Ricordati di stendere i panni',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '10/01/2020 16:15:22',
                         message: 'Tutto fatto!',
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     }
                 ],
             },
@@ -42,24 +41,23 @@ var app = new Vue({
                 name: 'Sofia',
                 avatar: '_2',
                 visible: true,
-                // currentChat: false,
                 messages: [{
                         date: '20/03/2020 16:30:00',
                         message: 'Ciao come stai?',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '20/03/2020 16:30:55',
                         message: 'Bene grazie! Stasera ci vediamo?',
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '20/03/2020 16:35:00',
                         message: 'Mi piacerebbe ma devo andare a fare la spesa.',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     }
                 ],
             },
@@ -68,24 +66,23 @@ var app = new Vue({
                 name: 'Samuele',
                 avatar: '_3',
                 visible: true,
-                // currentChat: false,
                 messages: [{
                         date: '28/03/2020 10:10:40',
                         message: 'La Marianna va in campagna',
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '28/03/2020 10:20:10',
                         message: 'Sicuro di non aver sbagliato chat?',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '28/03/2020 16:15:22',
                         message: 'Ah scusa!',
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     }
                 ],
             },
@@ -94,18 +91,17 @@ var app = new Vue({
                 name: 'Alessandro B.',
                 avatar: '_4',
                 visible: true,
-                // currentChat: false,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Lo sai che ha aperto una nuova pizzeria?',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '10/01/2020 15:50:00',
                         message: 'Si, ma preferirei andare al cinema',
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     }
                 ],
             },
@@ -114,18 +110,17 @@ var app = new Vue({
                 name: 'Alessandro L.',
                 avatar: '_5',
                 visible: true,
-                // currentChat: false,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Ricordati di chiamare la nonna',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '10/01/2020 15:50:00',
                         message: 'Va bene, stasera la sento',
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     }
                 ],
             },
@@ -134,24 +129,23 @@ var app = new Vue({
                 name: 'Claudia',
                 avatar: '_6',
                 visible: true,
-                // currentChat: false,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Ciao Claudia, hai novità?',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '10/01/2020 15:50:00',
                         message: 'Non ancora',
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '10/01/2020 15:51:00',
                         message: 'Nessuna nuova, buona nuova',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     }
                 ],
             },
@@ -160,18 +154,17 @@ var app = new Vue({
                 name: 'Federico',
                 avatar: '_7',
                 visible: true,
-                // currentChat: false,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Fai gli auguri a Martina che è il suo compleanno!',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '10/01/2020 15:50:00',
                         message: 'Grazie per avermelo ricordato, le scrivo subito!',
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     }
                 ],
             },
@@ -180,24 +173,23 @@ var app = new Vue({
                 name: 'Davide',
                 avatar: '_8',
                 visible: true,
-                // currentChat: false,
                 messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Ciao, andiamo a mangiare la pizza stasera?',
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '10/01/2020 15:50:00',
                         message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
                         status: 'sent',
-                        showDropDown: true,
+                        showDropDown: false,
                     },
                     {
                         date: '10/01/2020 15:51:00',
                         message: 'OK!!',
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     }
                 ],
             },
@@ -213,6 +205,10 @@ var app = new Vue({
 
         // stato del singolo contatto (chat aperta a destra) --> online / sta scrivendo / ultimo accesso
         contactStatus: 'Ultimo accesso ieri alle 22:28'
+    },
+
+    created(){
+        
     },
 
     methods: {
@@ -243,7 +239,7 @@ var app = new Vue({
                     date: `${currentDate} ${currentTime}`,
                     message: this.newMessageText,
                     status: 'sent',
-                    showDropDown: true,
+                    showDropDown: false,
                 }
 
                 singleArrayMessage.push(newObjectMessage);
@@ -251,11 +247,12 @@ var app = new Vue({
                 // reset campo input (dopo aver inviato un messaggio) per inviare un nuovo messaggio
                 this.newMessageText = '';
 
+                // dopo 2 secondi che l'utente invia un messaggio --> status = sta scrivendo...
                 setTimeout(() => {
                     this.contactStatus = 'sta scrivendo...';
                 }, 2000);
                 
-                // dopo 2 secondi che l'utente invia un messaggio si ha una risposta automatica
+                // dopo 4.5 secondi che l'utente invia un messaggio --> stampa del messaggio
                 setTimeout(() => {
                     let currentDate2 = dayjs().format('DD/MM/YYYY');
                     var currentTime2 = dayjs().format('HH:mm:ss');
@@ -265,27 +262,28 @@ var app = new Vue({
                         date: `${currentDate2} ${currentTime2}`,
                         message:  `Sei un povero gabbiano`,
                         status: 'received',
-                        showDropDown: true,
+                        showDropDown: false,
                     }
                     
                     singleArrayMessage.push(newObjectMessageReceived);
                     
+                    // status = online 
                     this.contactStatus = 'online';
-                    console.log(this.contactStatus)
                     
                 }, 4500);
                 
             }
 
+            // dopo 7 secondi che l'utente invia un messaggio --> status = ultimo accesso + ora attuale
             setTimeout( () => {
                 var currentTime2 = dayjs().format('HH:mm')
                 this.contactStatus = `Ultimo accesso oggi alle ${currentTime2}`;
-                console.log(this.contactStatus)
             },7000)
             
 
         },
         
+        // funzione per filtrare i nomi tra tutti i contatti
         filterList: function(){
             this.contacts.forEach(element => {
                 if (element.name.toLowerCase().includes(this.searchContact.toLowerCase())) {
@@ -298,16 +296,22 @@ var app = new Vue({
 
         // funzione per rendere dinamico l'ultimo messaggio della chat nella colonna sinistra
         lastMessage: function(index){
-            let singleArrayMessage = this.contacts[index - 1].messages;
+            let singleArrayMessage = this.contacts[index].messages;
             let lastObjectMessage = singleArrayMessage[singleArrayMessage.length - 1];
             return lastObjectMessage.message
         },
 
         // funzione per rendere dinamica la data  dell'ultimo messaggio della chat nella colonna sinistra
         lastMessageDate: function(index){
-            let singleArrayMessage = this.contacts[index - 1].messages;
+            let singleArrayMessage = this.contacts[index].messages;
             let lastObjectMessage = singleArrayMessage[singleArrayMessage.length - 1];
             return lastObjectMessage.date
+        },
+
+        showInfoMessage: function(messageIndex){
+            let singleArrayMessage = this.contacts[this.currentIndex].messages;
+            let infoMessage = singleArrayMessage[messageIndex].date;
+            alert(`Info messaggio: ${infoMessage}`)
         },
 
         deleteMessage: function(messageIndex) {

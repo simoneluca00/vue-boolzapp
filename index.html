@@ -38,13 +38,14 @@
                     </div>
 
                     <!-- SECTION sezione dedicata agli avvisi riguardanti le notifiche -->
-                    <div id="notifiche">
+                    <div id="notification">
                         <div class="ringIcon">
                             <i class="fa-solid fa-bell-slash"></i>
                         </div>
                         <div>
                             <p>Ricevi notifiche di nuovi messaggi</p>
-                            <p class="text-small text-underlined text-gray notificheActive">Attiva le notidiche desktop
+                            <p class="text-small text-underlined text-gray notificationTurnOn">Attiva le notidiche
+                                desktop
                             </p>
                         </div>
                     </div>
@@ -67,29 +68,27 @@
 
                     <div id="chats">
                         <h4 v-if="contacts.length === 0">Cerca un contatto e inizia una nuova conversazione!</h4>
+
                         <ul v-else>
-                            <!-- 
-                                dove andava usato l'index ho utilizzato CONTACT.ID - 1 per avere sempre un numero 
-                                univoco per ogni contatto, dato che non ho impostato la funzione per il filtraggio
-                                sulla variabile booleana "VISIBLE" 
-                            -->
                             <li v-for="(contact, index) in contacts" :key="contact.id" class="singleContact"
                                 :class="[(index == currentIndex) ? 'currentChat' : '']"
-                                @click="toggleElement(contact), selectChat(index)" v-if="contact.visible == true">
+                                @click="selectChat(index)" v-if="contact.visible == true">
                                 <img :src="'./asset/img/avatar' + contact.avatar + '.jpg'"
                                     :alt="`foto profilo di ${contact.name}`" class="profilePhoto">
 
                                 <div class="contactInfo">
                                     <div>
-                                        <span>{{contact.name}}</span>
+                                        <span>
+                                            <strong>{{contact.name}}</strong>
+                                        </span>
 
-                                        <p class="text-small">
-                                            {{lastMessage(contact.id)}}
+                                        <p class="lastMessageText">
+                                            {{lastMessage(index)}}
                                         </p>
                                     </div>
 
                                     <span class="lastMessageDate text-gray">
-                                        {{lastMessageDate(contact.id)}}
+                                        {{lastMessageDate(index)}}
                                     </span>
 
                                 </div>
@@ -110,7 +109,9 @@
                             alt="foto profilo contatto" class="profilePhoto">
                         <div class="contactInfo">
                             <div>
-                                <span>{{contacts[currentIndex].name}}</span>
+                                <span>
+                                    <strong>{{contacts[currentIndex].name}}</strong>
+                                </span>
                                 <!-- per cambiare lo stato NO v-model perchè non è un input -->
                                 <p class="text-small text-gray">
                                     <!-- Ultimo accesso oggi alle 12:00 -->
@@ -132,17 +133,17 @@
                             <li class="singleMessage" :class="[(text.status === 'sent') ? 'sent' : 'received']"
                                 v-for="(text, index) in contacts[currentIndex].messages">
                                 <span class="textMessage">{{text.message}}</span>
-                                <span v-if="text.showDropDown" class="timeMessage text-gray">{{text.date}}</span>
+                                <span v-if="text.showDropDown == false" class="timeMessage text-gray">{{text.date}}</span>
                                 <i class="fa-solid"
-                                    :class="{ 'fa-angle-down' : text.showDropDown, 'fa-angle-up' : !text.showDropDown }"
+                                    :class="{ 'fa-angle-down' : text.showDropDown == false, 'fa-angle-up' : text.showDropDown == true }"
                                     aria-hidden="true" @click="toggleElement(text)">
 
                                 </i>
 
-                                <div v-if="!text.showDropDown" class="optionMessage">
+                                <div v-if="text.showDropDown == true" class="optionMessage">
 
                                     <ul>
-                                        <li @click="">
+                                        <li @click="showInfoMessage(index)">
                                             Info messaggio
                                             <i class="fa-solid fa-info"></i> </li>
                                         <li @click="deleteMessage(index)">
