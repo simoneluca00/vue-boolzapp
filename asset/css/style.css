@@ -1,8 +1,8 @@
 * {
-   padding: 0;
-   margin: 0;
-   box-sizing: border-box;
-   font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 /* ANCHOR general tags */
@@ -32,13 +32,13 @@ i {
 /* sfondo con due colorazioni */
 #container {
     height: 100vh;
-    background-image: 
+    background-image:
         linear-gradient(to bottom,
-        #009688 0px,
-        #009688 15vh,
-        #dddbd1 15vh,
-        #d2dbdc 100%);
-    
+            #009688 0px,
+            #009688 15vh,
+            #dddbd1 15vh,
+            #d2dbdc 100%);
+
     padding: 20px 0;
     display: flex;
     justify-content: center;
@@ -72,8 +72,8 @@ i {
 .myInfo,
 .iconsProfile,
 #notifiche,
-#findChat > div,
-#contactAccount > .contactInfo {
+#findChat>div,
+#contactAccount>.contactInfo {
     display: flex;
     align-items: center;
 }
@@ -91,14 +91,18 @@ i {
     padding: 10.5px;
 }
 
-.ringIcon {
-  background-color: #fff;
-  padding: 15px 5px;
-  border-radius: 50%;
-  margin-right: 20px;  
+.notificheActive:hover {
+    cursor: pointer;
 }
 
-.ringIcon > i {
+.ringIcon {
+    background-color: #fff;
+    padding: 15px 5px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.ringIcon>i {
     color: #99dafd;
 }
 
@@ -108,7 +112,7 @@ i {
     background-color: #f1f2f8;
 }
 
-#findChat > div {
+#findChat>div {
     border: 1px solid #e9eaed;
     border-radius: 5px;
 }
@@ -117,7 +121,7 @@ i {
     width: 87%;
 }
 
-.searchInput > input {
+.searchInput>input {
     width: 100%;
     padding: 7px 5px;
     border: none;
@@ -135,13 +139,14 @@ i {
     border-radius: 5px 0 0 5px;
 }
 
-.searchIcon > .fa-magnifying-glass {
+.searchIcon>.fa-magnifying-glass {
     font-size: initial;
 }
 
 /* SECTION sezione dedicata alle singole chat */
 #chats {
     height: 100%;
+    overflow-y: auto;
 }
 
 #chats h4 {
@@ -189,6 +194,7 @@ i {
 #chatMessages {
     background-image: url('./../img/mine.jpg');
     height: 100%;
+    overflow-y: auto;
     padding: 30px 40px;
 }
 
@@ -204,15 +210,19 @@ i {
     font-size: 0.9em;
     display: flex;
     justify-content: space-between;
+    position: relative;
+    width: auto;
+    min-width: 55%;
+    max-width: 100%;
 }
 
 .textMessage {
-    margin: 0 60px 0 15px;
+    margin-left: 15px;
     padding: 15px 0;
 }
 
 .timeMessage {
-    margin: 0 5px 3px 0;
+    margin: 0 5px 3px 20px;
     align-self: flex-end;
     font-size: 0.7em;
 }
@@ -225,6 +235,59 @@ i {
 .received {
     background-color: #fff;
     align-self: flex-start;
+}
+
+.fa-angle-down,
+.fa-angle-up {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.fa-angle-down:hover,
+.fa-angle-up:hover {
+    cursor: pointer;
+}
+
+/* dropdown per i messaggi inviati */
+.optionMessage {
+    width: 150px;
+    position: absolute;
+    top: 46px;
+    right: 0;
+    background-color: whitesmoke;
+    border-top: 1px solid #d5d5e2;
+    z-index: 9999;
+}
+
+.optionMessage li {
+    list-style-type: none;
+    padding: 10px;
+    border: 1px solid #d5d5e2;
+    box-shadow: 0 0 1px 1px inset rgb(218, 208, 208);
+    border-top: 0;
+    font-size: 0.9em;
+}
+
+.optionMessage li:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.optionMessage i {
+    color: #000;
+}
+
+.optionMessage .fa-info {
+    padding: 2px 6px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    font-size: 0.9em;
+}
+
+.optionMessage .fa-trash-can {
+    margin-left: 13px;
+    font-size: 1em;
 }
 
 /* SECTION sezione per scrivere un nuovo messaggio */
@@ -246,14 +309,13 @@ i {
 }
 
 .newText,
-.newText > input {
+.newText>input {
     width: 100%;
 }
 
-.newText > input {
+.newText>input {
     padding: 10px 15px;
     border: none;
     outline: none;
     border-radius: 4px;
 }
-

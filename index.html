@@ -7,8 +7,10 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
     <!-- FONT AWESOME 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel='stylesheet' href='./asset/css/style.css'>
     <title>Vue Boolzap</title>
 </head>
@@ -23,7 +25,8 @@
                     <!-- SECTION sezione dedicata al profilo dell'utente che ha effettuato l'accesso -->
                     <div id="myAccount">
                         <div class="myInfo">
-                            <img :src="'./asset/img/avatar' + myAccount.avatar + '.jpg'" :alt="`foto profilo di ${myAccount.name}`" class="profilePhoto">
+                            <img :src="'./asset/img/avatar' + myAccount.avatar + '.jpg'"
+                                :alt="`foto profilo di ${myAccount.name}`" class="profilePhoto">
                             <span>{{myAccount.name}}</span>
                         </div>
 
@@ -41,7 +44,7 @@
                         </div>
                         <div>
                             <p>Ricevi notifiche di nuovi messaggi</p>
-                            <p class="text-small text-underlined text-gray">Attiva le notidiche desktop</p>
+                            <p class="text-small text-underlined text-gray notificheActive">Attiva le notidiche desktop</p>
                         </div>
                     </div>
 
@@ -54,8 +57,7 @@
 
                             <div class="searchInput">
                                 <input type="text" placeholder="Cerca o inizia una nuova chat"
-                                       v-model.trim="searchContact"
-                                >
+                                    v-model.trim="searchContact">
                             </div>
                         </div>
                     </div>
@@ -65,25 +67,33 @@
                     <div id="chats">
                         <h4 v-if="contacts.length === 0">Cerca un contatto e inizia una nuova conversazione!</h4>
                         <ul v-else>
-                            <li v-for="(contact, index) in filteredList" :key="contact.id" 
-                                class="singleContact" :class="{'currentChat' : contact.currentChat == true}" 
-                                @click="selectChat(contact, contact.id)"
-                            >
-                                <img :src="'./asset/img/avatar' + contact.avatar + '.jpg'" :alt="`foto profilo di ${contact.name}`" class="profilePhoto">
-                                   
+                            <!-- 
+                                dove andava usato l'index ho utilizzato CONTACT.ID - 1 per avere sempre un numero 
+                                univoco per ogni contatto, dato che non ho impostato la funzione per il filtraggio
+                                sulla variabile booleana "VISIBLE" 
+                            -->
+                            <li v-for="(contact, index) in filteredList" :key="contact.id" class="singleContact"
+                                :class="{'currentChat' : contact.currentChat == true}"
+                                @click="toggleElement(contact), selectChat(contact.id)">
+                                <img :src="'./asset/img/avatar' + contact.avatar + '.jpg'"
+                                    :alt="`foto profilo di ${contact.name}`" class="profilePhoto">
+
                                 <div class="contactInfo">
                                     <div>
                                         <span>{{contact.name}}</span>
-                                        <p class="text-small text-gray">
-                                            Ultimo messaggio inviato
+                                        <p class="text-small">
+                                            
+                                            {{lastMessage(contact.id)}}
                                         </p>
                                     </div>
-    
+
                                     <div>
-                                        <span class="text-small text-gray">12:00</span>
+                                        <span class="text-small text-gray">
+                                            {{lastMessageDate(contact.id)}}
+                                        </span>
                                     </div>
                                 </div>
-                                
+
                             </li>
                         </ul>
                     </div>
@@ -96,7 +106,8 @@
 
                     <!-- SECTION info contatto della chat aperta -->
                     <div id="contactAccount">
-                        <img :src="'./asset/img/avatar' + contacts[currentIndex].avatar + '.jpg'" alt="foto profilo contatto" class="profilePhoto">
+                        <img :src="'./asset/img/avatar' + contacts[currentIndex].avatar + '.jpg'"
+                            alt="foto profilo contatto" class="profilePhoto">
                         <div class="contactInfo">
                             <div>
                                 <span>{{contacts[currentIndex].name}}</span>
@@ -116,11 +127,29 @@
                     <!-- SECTION corpo della conversazione (messaggi) -->
                     <div id="chatMessages">
                         <ul>
-                            <li class="singleMessage" :class="[(text.status === 'sent') ? 'sent' : 'received']" 
-                                v-for="(text, index) in contacts[currentIndex].messages"
-                            >
+                            <li class="singleMessage" :class="[(text.status === 'sent') ? 'sent' : 'received']"
+                                v-for="(text, index) in contacts[currentIndex].messages">
                                 <span class="textMessage">{{text.message}}</span>
-                                <span class="timeMessage text-gray">{{text.date}}</span>
+                                <span v-if="text.showDropDown" class="timeMessage text-gray">{{text.date}}</span>
+                                <i class="fa-solid"
+                                    :class="{ 'fa-angle-down' : text.showDropDown, 'fa-angle-up' : !text.showDropDown }"
+                                    aria-hidden="true" @click="toggleElement(text)">
+                                    
+                                </i>
+
+                                <div v-if="!text.showDropDown" class="optionMessage">
+
+                                    <ul>
+                                        <li @click="">
+                                            Info messaggio
+                                            <i class="fa-solid fa-info"></i>                                        </li>
+                                        <li @click="deleteMessage(index)">
+                                            Elimina per me
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </li>
+                                    </ul>
+
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -133,9 +162,8 @@
                         </div>
 
                         <div class="newText">
-                            <input type="text" placeholder="Scrivi un messaggio"
-                                   v-model.trim="newMessageText" @keypress.enter="sendNewMessage"
-                            >
+                            <input type="text" placeholder="Scrivi un messaggio" v-model.trim="newMessageText"
+                                @keypress.enter="sendNewMessage">
                         </div>
 
                         <div class="microIcon">
