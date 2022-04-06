@@ -165,8 +165,13 @@
                                 @keypress.enter="sendNewMessage">
                         </div>
 
+                        <!-- se si sta scrivendo nell'input compare l'icona dell'aeroplano e cliccandola è possibile inviare il messaggio -->
                         <div class="microIcon">
-                            <i class="fa-solid fa-microphone"></i>
+                            <i v-if="newMessageText !== ''" 
+                               class="fa-solid fa-paper-plane"
+                               @click="sendNewMessage"
+                            ></i>
+                            <i v-else class="fa-solid fa-microphone"></i>
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,10 @@ i {
     margin: 0 8px;
 }
 
+i:hover {
+    cursor: pointer;
+}
+
 /* ANCHOR utilities */
 .text-small {
     font-size: 0.8em;
@@ -155,7 +159,7 @@ i {
 
 .singleContact {
     display: flex;
-    padding: 7.3px;
+    padding: 10px;
     border-bottom: 1px solid #d5d5e2;
 }
 
