@@ -81,17 +81,16 @@
                                 <div class="contactInfo">
                                     <div>
                                         <span>{{contact.name}}</span>
+
                                         <p class="text-small">
-                                            
                                             {{lastMessage(contact.id)}}
                                         </p>
                                     </div>
 
-                                    <div>
-                                        <span class="text-small text-gray">
-                                            {{lastMessageDate(contact.id)}}
-                                        </span>
-                                    </div>
+                                    <span class="lastMessageDate text-gray">
+                                        {{lastMessageDate(contact.id)}}
+                                    </span>
+
                                 </div>
 
                             </li>

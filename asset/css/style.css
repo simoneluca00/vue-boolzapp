@@ -175,6 +175,12 @@ i {
     margin-bottom: 5px;
 }
 
+.lastMessageDate {
+    font-size: 0.7em;
+    width: 63px;
+    text-align: center;
+}
+
 /* contenitore di destra dove vengono mostrate le singole conversazioni */
 #colDx {
     width: 65%;
@@ -222,7 +228,9 @@ i {
 }
 
 .timeMessage {
-    margin: 0 5px 3px 20px;
+    width: 63px;
+    text-align: center;
+    margin: 0 20px 3px;
     align-self: flex-end;
     font-size: 0.7em;
 }
@@ -251,7 +259,6 @@ i {
 
 /* dropdown per i messaggi inviati */
 .optionMessage {
-    width: 150px;
     position: absolute;
     top: 46px;
     right: 0;
@@ -261,8 +268,12 @@ i {
 }
 
 .optionMessage li {
+    width: 150px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     list-style-type: none;
-    padding: 10px;
     border: 1px solid #d5d5e2;
     box-shadow: 0 0 1px 1px inset rgb(218, 208, 208);
     border-top: 0;
