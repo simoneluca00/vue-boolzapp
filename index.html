@@ -71,12 +71,13 @@
 
                         <ul v-else>
                             <li v-for="(contact, index) in contacts" :key="contact.id" class="singleContact"
-                                :class="[(index == currentIndex) ? 'currentChat' : '']"
-                                @click="selectChat(index)" v-if="contact.visible == true">
+                                :class="[(index == currentIndex) ? 'currentChat' : '']" @click="selectChat(index)"
+                                v-if="contact.visible == true">
                                 <img :src="'./asset/img/avatar' + contact.avatar + '.jpg'"
                                     :alt="`foto profilo di ${contact.name}`" class="profilePhoto">
 
                                 <div class="contactInfo">
+
                                     <div>
                                         <span>
                                             <strong>{{contact.name}}</strong>
@@ -112,7 +113,7 @@
                                 <span>
                                     <strong>{{contacts[currentIndex].name}}</strong>
                                 </span>
-                                <!-- per cambiare lo stato NO v-model perchè non è un input -->
+
                                 <p class="text-small text-gray">
                                     <!-- Ultimo accesso oggi alle 12:00 -->
                                     {{contactStatus}}
@@ -129,11 +130,14 @@
 
                     <!-- SECTION corpo della conversazione (messaggi) -->
                     <div id="chatMessages">
+
                         <ul>
+                            <!-- v-for nel singolo array (per ogni contatto) che comprende tutti i messaggi -->
                             <li class="singleMessage" :class="[(text.status === 'sent') ? 'sent' : 'received']"
                                 v-for="(text, index) in contacts[currentIndex].messages">
                                 <span class="textMessage">{{text.message}}</span>
-                                <span v-if="text.showDropDown == false" class="timeMessage text-gray">{{text.date}}</span>
+                                <span v-if="text.showDropDown == false"
+                                    class="timeMessage text-gray">{{text.date}}</span>
                                 <i class="fa-solid"
                                     :class="{ 'fa-angle-down' : text.showDropDown == false, 'fa-angle-up' : text.showDropDown == true }"
                                     aria-hidden="true" @click="toggleElement(text)">
