@@ -200,8 +200,10 @@ i:not(.fa-bell-slash):hover,
     margin: 7px 0;
     font-size: 0.9em;
     height: 16.5px;
-    width: 250px;
-    overflow-y: clip;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .lastMessageDate {

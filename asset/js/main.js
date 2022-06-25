@@ -260,7 +260,7 @@ var app = new Vue({
                     // struttura dell'oggetto per un nuovo messaggio ricevuto
                     let newObjectMessageReceived = {
                         date: `${currentDate2} ${currentTime2}`,
-                        message: `Sei un povero gabbiano`,
+                        message: `Risposta automatica da Boolzapp`,
                         status: 'received',
                         showDropDown: false,
                     }
